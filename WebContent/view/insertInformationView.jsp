@@ -29,31 +29,31 @@
 				<table>
 					<tr>
 						<td>ID:</td>
-						<td><input type="text" name="ID" value="${loginedUser.ID}" readonly></td>
+						<td><input type="text" name="ID" value="${ID}" readonly></td>
 					</tr>
 					<tr>
 						<td>Name:</td>
-						<td><input type="text" name="name" value="${infor.name}"></td>
+						<td><input type="text" name="name"></td>
 					</tr>
 					<tr>
 						<td>Phone:</td>
-						<td><input type="text" name="phone" value="${infor.phone}"></td>
+						<td><input type="text" name="phone"></td>
 					</tr>
 					<tr>
 						<td>Gender:</td>
-						<td><input type="text" name="gender" value="${infor.gender}"></td>
+						<td><input type="text" name="gender"></td>
 					</tr>
 					<tr>
 						<td>Birth:</td>
-						<td><input type="date" name="birth" value="${infor.birth}"></td>
+						<td><input type="date" name="birth"></td>
 					</tr>
 					<tr>
 						<td>Email:</td>
-						<td><input type="text" name="email" value="${infor.email}"></td>
+						<td><input type="text" name="email"></td>
 					</tr>
 					<tr>
 						<td>Identity Number:</td>
-						<td><input type="text" name="identitynumber" value="${infor.identitynumber}"></td>
+						<td><input type="text" name="identitynumber"></td>
 					</tr>
 					<tr>
 						<td><input type="submit"></td>

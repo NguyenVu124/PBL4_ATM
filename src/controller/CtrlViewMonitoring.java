@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -13,36 +14,42 @@ import javax.servlet.http.HttpSession;
 
 import model.bean.Account;
 import model.bean.Monitoring;
-import model.bo.BO;
+import model.bo.ViewMonitoringBO;
 
-@WebServlet(urlPatterns = {"/viewMonitoring"})
+@WebServlet(urlPatterns = { "/viewMonitoring" })
 
-public class CtrlViewMonitoring extends HttpServlet{
+public class CtrlViewMonitoring extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	public CtrlViewMonitoring() {
 		super();
 	}
-	
+
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Account loginedUser = (Account) session.getAttribute("loginedUser");
 		if (loginedUser == null) {
 			response.sendRedirect(request.getContextPath() + "/login");
 			return;
 		}
-		
-		List<Monitoring> list = BO.viewMonitoring(loginedUser.getID());
-		
+		ViewMonitoringBO viewMonitoringBO = new ViewMonitoringBO();
+		List<Monitoring> list = null;
+		try {
+			list = viewMonitoringBO.viewMonitoring(loginedUser.getID());
+		} catch (ClassNotFoundException | SQLException e) {
+		}
+
 		request.setAttribute("list", list);
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/view/viewMonitoringView.jsp");
 		dispatcher.forward(request, response);
 	}
-	
+
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		this.doGet(request, response);
 	}
-	
+
 }

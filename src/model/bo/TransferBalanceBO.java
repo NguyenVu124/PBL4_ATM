@@ -8,7 +8,7 @@ import model.dao.TransferBalanceDAO;
 
 public class TransferBalanceBO {
 	TransferBalanceDAO transferBalanceDAO = new TransferBalanceDAO();
-	
+
 	public String checkFormTransferBalance(int _ID, String _input) {
 		String error = "Input must be positive float number";
 		float input = 0;
@@ -17,11 +17,11 @@ public class TransferBalanceBO {
 		} catch (Exception e) {
 			return error;
 		}
-		if (input<=1000)
+		if (input <= 1000)
 			return "Input number > 1000";
 		return null;
 	}
-	
+
 	public String checkTransfer(int _senderID, int _receiverID, String _input) {
 		try {
 			float input = Float.parseFloat(_input);
@@ -31,20 +31,23 @@ public class TransferBalanceBO {
 			}
 			List<Integer> list = transferBalanceDAO.getListID();
 			for (int item : list) {
-				if (item ==_receiverID) {
+				if (item == _receiverID) {
 					return null;
 				}
-			} 
-		} catch (Exception e) {}
+			}
+		} catch (Exception e) {
+		}
 		return "Invalid ID";
 	}
-	
-	public void transferBalance(int _senderID, int _receiverID, String _input) throws SQLException, ClassNotFoundException {
+
+	public void transferBalance(int _senderID, int _receiverID, String _input)
+			throws SQLException, ClassNotFoundException {
 		float input = 0;
 		try {
 			input = Float.parseFloat(_input);
-		} catch (Exception e) {}
-		
+		} catch (Exception e) {
+		}
+
 		float _sBalance = transferBalanceDAO.getBalance(_senderID).getBalance() - input;
 		float _rBalance = transferBalanceDAO.getBalance(_receiverID).getBalance() + input;
 		String currentTime = LocalDateTime.now().toString();
@@ -55,7 +58,8 @@ public class TransferBalanceBO {
 		String _rTime = date + " " + time;
 		String _rDes = "+ " + _input + " VND";
 		try {
-			transferBalanceDAO.transferBalance(_senderID, _receiverID, _sBalance, _rBalance, _sDes, _rDes, _sTime, _rTime);
+			transferBalanceDAO.transferBalance(_senderID, _receiverID, _sBalance, _rBalance, _sDes, _rDes, _sTime,
+					_rTime);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}

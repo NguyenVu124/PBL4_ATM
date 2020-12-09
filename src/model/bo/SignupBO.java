@@ -8,7 +8,7 @@ import model.dao.SignupDAO;
 
 public class SignupBO {
 	SignupDAO signupDAO = new SignupDAO();
-	
+
 	public String errorFormSignup(String _username, String _password, String _repassword) {
 		if (_username.equals("") || _password.equals("") || _repassword.equals("")) {
 			return "Fill in all fields";
@@ -18,7 +18,7 @@ public class SignupBO {
 		}
 		return null;
 	}
-	
+
 	public boolean isExistUsername(String _username) throws ClassNotFoundException, SQLException {
 		List<String> list = null;
 		list = signupDAO.getListUsername();
@@ -27,16 +27,16 @@ public class SignupBO {
 		}
 		return true;
 	}
-	
+
 	public void insertAccount(String _username, String _password) throws ClassNotFoundException, SQLException {
 		signupDAO.insertAccount(_username, _password);
 	}
-	
+
 	public void insertBalance(int _ID) throws ClassNotFoundException, SQLException {
 		signupDAO.insertBalance(_ID);
 	}
-	
+
 	public Account getAccountByUsername(String _username) throws ClassNotFoundException, SQLException {
 		return signupDAO.getAccountByUsername(_username);
 	}
-}	
+}

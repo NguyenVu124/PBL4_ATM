@@ -7,7 +7,7 @@ import model.dao.LoginDAO;
 
 public class LoginBO {
 	LoginDAO loginDAO = new LoginDAO();
-	
+
 	public Account checkAccountLogin(String _username, String _password) throws ClassNotFoundException, SQLException {
 		return loginDAO.accountLogin(_username, _password);
 	}

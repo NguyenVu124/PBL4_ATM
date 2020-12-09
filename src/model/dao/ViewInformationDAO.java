@@ -6,12 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import model.bean.Information;
-import util.MySQLConnUtils;
+import util.DataSource;
 
 public class ViewInformationDAO {
 	public Information getInformation(int _ID) throws SQLException, ClassNotFoundException {
 		Information infor = new Information();
-		Connection conn = MySQLConnUtils.getMySQLConnection();
+		// Connection conn = MySQLConnUtils.getMySQLConnection();
+		Connection conn = DataSource.getConnection();
 		String sql = "SELECT * from INFORMATION WHERE ID = ?";
 		PreparedStatement pre = conn.prepareStatement(sql);
 		pre.setInt(1, _ID);
@@ -24,8 +25,10 @@ public class ViewInformationDAO {
 			infor.setBirth(rs.getDate(5).toString());
 			infor.setEmail(rs.getString(6));
 			infor.setIdentitynumber(rs.getString(7));
+			DataSource.releaseConnection(conn);
 			return infor;
 		}
+		DataSource.releaseConnection(conn);
 		return null;
 	}
 }

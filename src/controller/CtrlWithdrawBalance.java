@@ -46,36 +46,38 @@ public class CtrlWithdrawBalance extends HttpServlet {
 		String input = (String) request.getParameter("input");
 		int ID = loginedUser.getID();
 
-		WithdrawBalanceBO withdrawBalanceBO = new WithdrawBalanceBO();
+		synchronized (this) {
+			WithdrawBalanceBO withdrawBalanceBO = new WithdrawBalanceBO();
 
-		String error = withdrawBalanceBO.checkErrorWithdraw(input);
-		if (error == null) {
-			float output = 0;
-			try {
-				output = withdrawBalanceBO.calculateWithdraw(ID, input);
-			} catch (ClassNotFoundException | SQLException e) {
-			}
-			if (output < 0) {
-				error = "Not enough";
+			String error = withdrawBalanceBO.checkErrorWithdraw(input);
+			if (error == null) {
+				float output = 0;
+				try {
+					output = withdrawBalanceBO.calculateWithdraw(ID, input);
+				} catch (ClassNotFoundException | SQLException e) {
+				}
+				if (output < 0) {
+					error = "Not enough";
+					request.setAttribute("error", error);
+					RequestDispatcher dispatcher = this.getServletContext()
+							.getRequestDispatcher("/view/withdrawBalanceView.jsp");
+					dispatcher.forward(request, response);
+					return;
+				} else {
+					try {
+						withdrawBalanceBO.withdrawBalance(ID, output);
+						withdrawBalanceBO.insertWithdrawMonitoring(ID, input);
+					} catch (ClassNotFoundException | SQLException e) {
+					}
+					RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/view/homeView.jsp");
+					dispatcher.forward(request, response);
+				}
+			} else {
 				request.setAttribute("error", error);
 				RequestDispatcher dispatcher = this.getServletContext()
 						.getRequestDispatcher("/view/withdrawBalanceView.jsp");
 				dispatcher.forward(request, response);
-				return;
-			} else {
-				try {
-					withdrawBalanceBO.withdrawBalance(ID, output);
-					withdrawBalanceBO.insertWithdrawMonitoring(ID, input);
-				} catch (ClassNotFoundException | SQLException e) {
-				}
-				RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/view/homeView.jsp");
-				dispatcher.forward(request, response);
 			}
-		} else {
-			request.setAttribute("error", error);
-			RequestDispatcher dispatcher = this.getServletContext()
-					.getRequestDispatcher("/view/withdrawBalanceView.jsp");
-			dispatcher.forward(request, response);
 		}
 
 	}

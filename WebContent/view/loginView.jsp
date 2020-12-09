@@ -1,48 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>Đăng nhập</title>
-	<style>
-		body {
-			margin: 0;
-		}
-		.container {
-			display:flex;
-		}
-		.nav {
-			width:20%;
-		}
-	</style>
+<meta charset="UTF-8">
+<title>Đăng nhập</title>
+<link rel="stylesheet" href="./view/style/style.css" />
+<title>Home</title>
 </head>
 <body>
-	<div>
-		<div class="header"><jsp:include page="_header.jsp"></jsp:include></div>
-		<div class="container">
-			<div class="nav"><jsp:include page="_nav.jsp"></jsp:include></div>
-			<div class="content">
-				<h1>LOG IN PAGE</h1>
-				<p style="color:red;">${error}</p><br>
-				<form action="${pageContext.request.contextPath}/login" method="POST">
-				<table>
-				<tr>
-					<td><label>Username: </label></td>
-					<td><input type="text" name="username"></td>
-				</tr>
-				<tr>
-					<td><label>Password: </label></td>
-					<td><input type="password" name="password"></td>
-				</tr>
-				<tr>
-					<td><input type="submit">
-				</tr>
-			</table>	
+	<div class="wrapper fadeInDown">
+		<div id="formContent">
+			<!-- Tabs Titles -->
+			<h2>
+				<a href="">Sign In</a>
+			</h2>
+			<h2>
+				<a href="${pageContext.request.contextPath}/signup">Sign Up</a>
+			</h2>
+
+			<!-- Login Form -->
+			<form action="${pageContext.request.contextPath}/login" method="post">
+				<input type="text" name="username" placeholder="username" /> <input
+					type="password" name="password" placeholder="password" /> <input
+					type="submit" value="Log In" />
 			</form>
+			<p style="color: red;">${error}</p>
+			<br>
+			<!-- Remind Passowrd -->
+			<div id="formFooter">
+				<a class="underlineHover" href="#">Forgot Password?</a>
 			</div>
 		</div>
-		<div class="footer"></div>
 	</div>
 </body>
 </html>

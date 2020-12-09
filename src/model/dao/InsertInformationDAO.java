@@ -5,12 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import model.bean.Information;
-import util.MySQLConnUtils;
+import util.DataSource;
 
 public class InsertInformationDAO {
 	public void insertInformation(Information _infor) throws SQLException, ClassNotFoundException {
 		String sql = "INSERT INTO INFORMATION (ID, name, phone, gender, birth, email, identitynumber) VALUES (?, ?, ?, ?, ?, ?, ?)";
-		Connection conn = MySQLConnUtils.getMySQLConnection();
+		// Connection conn = MySQLConnUtils.getMySQLConnection();
+		Connection conn = DataSource.getConnection();
 		PreparedStatement pre = conn.prepareStatement(sql);
 		pre.setString(2, _infor.getName());
 		pre.setString(3, _infor.getPhone());
@@ -20,5 +21,6 @@ public class InsertInformationDAO {
 		pre.setString(7, _infor.getIdentitynumber());
 		pre.setInt(1, _infor.getID());
 		pre.executeUpdate();
+		DataSource.releaseConnection(conn);
 	}
 }

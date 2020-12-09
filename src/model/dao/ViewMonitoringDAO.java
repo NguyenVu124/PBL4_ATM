@@ -8,12 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.bean.Monitoring;
-import util.MySQLConnUtils;
+import util.DataSource;
 
 public class ViewMonitoringDAO {
 	public List<Monitoring> getMonitoring(int _ID) throws SQLException, ClassNotFoundException {
 		List<Monitoring> list = new ArrayList<Monitoring>();
-		Connection conn = MySQLConnUtils.getMySQLConnection();
+		// Connection conn = MySQLConnUtils.getMySQLConnection();
+		Connection conn = DataSource.getConnection();
 		String sql = "SELECT * FROM MONITORING WHERE ID = ?";
 		PreparedStatement pre = conn.prepareStatement(sql);
 		pre.setInt(1, _ID);
@@ -24,6 +25,7 @@ public class ViewMonitoringDAO {
 			Monitoring monitoring = new Monitoring(time, description);
 			list.add(monitoring);
 		}
+		DataSource.releaseConnection(conn);
 		return list;
 	}
 }

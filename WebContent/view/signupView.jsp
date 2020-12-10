@@ -4,11 +4,11 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="./view/style/style.css" />
+    <link rel="stylesheet" href="./view/style/signup.css" />
     <title>Đăng ký</title>
   </head>
   <body>
-    <div class="wrapper fadeInDown">
+    <div class="wrapper">
       <div class="content" id="formContent">
         <h1>SIGN UP</h1>
         <br />
@@ -26,7 +26,7 @@
             <label>RePassword: </label>
             <input type="password" name="repassword" class="input" />
 
-            <input type="submit" />
+            <input type="submit" value="Sign up"/>
           </td>
         </form>
         <p style="color: red;">${error}</p>

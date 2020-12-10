@@ -1,0 +1,27 @@
+.nav {
+  margin-bottom: auto;
+  width: 300px;
+}
+
+ul {
+  list-style: circle;
+  font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
+  margin-right: 100px;
+}
+
+li:hover {
+  border-radius: 80px;
+  border: 1px solid #128cfc;
+}
+
+a {
+  color: #1f1d0e;
+  font-size: 70%;
+  text-decoration: none;
+  color: #000;
+  display: block;
+  width: 250px;
+}
+h3 {
+  color: #8d8741;
+}

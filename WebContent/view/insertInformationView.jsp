@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="./view/style/style.css" />
+    <link rel="stylesheet" href="./view/style/addInfo.css" />
     <title>Thêm thông tin cá nhân</title>
   </head>
   <body>
@@ -30,7 +30,7 @@
           <input type="text" name="email" />
           <label>Identity Number: </label>
           <input type="text" name="identitynumber" />
-          <input type="submit" />
+          <input type="submit" value="Insert"/>
         </form>
         <p style="color: red;">${error}</p>
 			<br>

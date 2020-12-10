@@ -1,0 +1,29 @@
+@charset "ISO-8859-1";
+html {
+  background-color: #eef5f8;
+}
+
+body {
+  padding: 24px;
+  font-family: sans-serif;
+  margin: 0;
+}
+.container {
+  max-width: 1000px;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin-right: 50vh;
+}
+
+.content {
+  margin-bottom: auto;
+  width: 500px;
+}
+
+table{
+	font-size: 20px;
+}

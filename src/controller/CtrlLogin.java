@@ -53,7 +53,7 @@ public class CtrlLogin extends HttpServlet {
 			session.setAttribute("loginedUser", account);
 			String notification = "Login successful";
 			request.setAttribute("notification", notification);
-			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/view/homeView.jsp");
+			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/viewBalance");
 			dispatcher.forward(request, response);
 		}
 

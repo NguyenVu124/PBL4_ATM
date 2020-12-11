@@ -19,15 +19,8 @@
 		</div>
 		<div class="container">
 			<div class="nav">
-				<ul>
-					<li><a href="${pageContext.request.contextPath}/">Trang
-							chủ</a></li>
-
-					<li><a href="${pageContext.request.contextPath}/login">Đăng
-							nhập</a></li>
-
-					<li><a href="${pageContext.request.contextPath}/signup">Đăng
-							ký</a></li>
+				<ul> 
+					
 
 					<li><a
 						href="${pageContext.request.contextPath}/viewInformation">Xem

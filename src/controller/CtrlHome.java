@@ -9,25 +9,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = { "/home" })
+@WebServlet(urlPatterns = {"/home"})
 
-public class CtrlHome extends HttpServlet {
+public class CtrlHome extends HttpServlet{
 	private static final long serialVersionUID = 1L;
-
+	
 	public CtrlHome() {
 		super();
 	}
-
+	
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/view/homeView.jsp");
 		dispatcher.forward(request, response);
 	}
-
+	
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		this.doGet(request, response);
 	}
 }

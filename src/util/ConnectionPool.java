@@ -15,13 +15,12 @@ public class ConnectionPool implements InterfaceCP {
 	private static final int MAX_TIMEOUT = 5;
 
 	private final String hostName = "localhost";
-	private final String dbName = "pbl_test";
+	private final String dbName = "pbl";
 	private final String url = "jdbc:mysql://" + hostName + ":3306/" + dbName;
 	private final String username = "root";
 	private final String password = "";
 
 	public ConnectionPool() {
-
 		for (int i = 0; i < MAX_POOL_SIZE; i++) {
 			try {
 				availableConnections.add(createConnection(url, username, password));

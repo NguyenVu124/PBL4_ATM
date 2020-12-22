@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class MySQLConnUtils {
 	public static Connection getMySQLConnection() throws ClassNotFoundException, SQLException {
 		String hostName = "localhost";
-		String dbName = "pbl_test";
+		String dbName = "pbl";
 		String username = "root";
 		String password = "";
 		Class.forName("com.mysql.cj.jdbc.Driver");

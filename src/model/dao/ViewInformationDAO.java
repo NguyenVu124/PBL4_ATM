@@ -7,11 +7,12 @@ import java.sql.SQLException;
 
 import model.bean.Information;
 import util.DataSource;
+//import util.MySQLConnUtils;
 
 public class ViewInformationDAO {
 	public Information getInformation(int _ID) throws SQLException, ClassNotFoundException {
 		Information infor = new Information();
-		// Connection conn = MySQLConnUtils.getMySQLConnection();
+		//Connection conn = MySQLConnUtils.getMySQLConnection();
 		Connection conn = DataSource.getConnection();
 		String sql = "SELECT * from INFORMATION WHERE ID = ?";
 		PreparedStatement pre = conn.prepareStatement(sql);

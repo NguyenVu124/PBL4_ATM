@@ -7,11 +7,12 @@ import java.sql.SQLException;
 
 import model.bean.Account;
 import util.DataSource;
+//import util.MySQLConnUtils;
 
 public class LoginDAO {
 	public Account accountLogin(String _username, String _password) throws SQLException, ClassNotFoundException {
 		Account account = new Account("", "");
-		// Connection conn = MySQLConnUtils.getMySQLConnection();
+		//Connection conn = MySQLConnUtils.getMySQLConnection();
 		Connection conn = DataSource.getConnection();
 		String sql = "SELECT * from ACCOUNT WHERE username = ? AND password = ?";
 		PreparedStatement pre = conn.prepareStatement(sql);
@@ -29,5 +30,5 @@ public class LoginDAO {
 		DataSource.releaseConnection(conn);
 		return null;
 	}
-
+	
 }

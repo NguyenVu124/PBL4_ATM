@@ -7,11 +7,12 @@ import java.sql.SQLException;
 
 import model.bean.Information;
 import util.DataSource;
+//import util.MySQLConnUtils;
 
 public class UpdateInformationDAO {
 	public Information getInformation(int _ID) throws SQLException, ClassNotFoundException {
 		Information infor = new Information();
-		// Connection conn = MySQLConnUtils.getMySQLConnection();
+		//Connection conn = MySQLConnUtils.getMySQLConnection();
 		Connection conn = DataSource.getConnection();
 		String sql = "SELECT * from INFORMATION WHERE ID = ?";
 		PreparedStatement pre = conn.prepareStatement(sql);
@@ -31,10 +32,10 @@ public class UpdateInformationDAO {
 		DataSource.releaseConnection(conn);
 		return null;
 	}
-
+	
 	public void updateInformation(Information _infor) throws SQLException, ClassNotFoundException {
 		String sql = "UPDATE INFORMATION SET name = ?, phone = ?, gender = ?, birth = ?, email = ?, identitynumber = ? WHERE ID = ?";
-		// Connection conn = MySQLConnUtils.getMySQLConnection();
+		//Connection conn = MySQLConnUtils.getMySQLConnection();
 		Connection conn = DataSource.getConnection();
 		PreparedStatement pre = conn.prepareStatement(sql);
 		pre.setString(1, _infor.getName());

@@ -7,11 +7,12 @@ import java.sql.SQLException;
 
 import model.bean.Balance;
 import util.DataSource;
+//import util.MySQLConnUtils;
 
 public class ViewBalanceDAO {
 	public Balance getBalance(int _ID) throws SQLException, ClassNotFoundException {
 		Balance balance = new Balance();
-		// Connection conn = MySQLConnUtils.getMySQLConnection();
+		//Connection conn = MySQLConnUtils.getMySQLConnection();
 		Connection conn = DataSource.getConnection();
 		String sql = "SELECT * from BALANCE WHERE ID = ?";
 		PreparedStatement pre = conn.prepareStatement(sql);

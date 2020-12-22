@@ -11,7 +11,7 @@ INSERT INTO ACCOUNT(username, password, type) VALUES
 ('admin', '123', 1),
 ('huy', '1', 0),
 ('vu', '1', 0),
-('dat', '1', 1);
+('dat', '1', 0);
 
 CREATE TABLE BALANCE (
 	ID int(6) NOT NULL,
@@ -39,9 +39,9 @@ CREATE TABLE INFORMATION (
 );
 
 INSERT INTO INFORMATION (ID, name, phone, gender, birth, email, identitynumber) VALUES
-(1001, 'Nguyen Kim Huy', '0394123560', 'Nam', '1999-11-01', 'nguyenkimhuy@gmail.com', '191967481'),
-(1002, 'Hoang Nguyen Vu', '0123456789', 'Nam', '2000-04-12', 'hoangnguyenvu@gmail.com', '191969481'),
-(1003, 'Van Ngoc Dat', '0123456123', 'Nam', '2000-02-10', 'vanngocdat@gmail.com', '191969480');
+(1001, 'Nguyen Kim Huy', '0394123560', 'Male', '1999-11-01', 'nguyenkimhuy@gmail.com', '191967481'),
+(1002, 'Hoang Nguyen Vu', '0123456789', 'Male', '2000-04-12', 'hoangnguyenvu@gmail.com', '191969481'),
+(1003, 'Van Ngoc Dat', '0123456123', 'Male', '2000-02-10', 'vanngocdat@gmail.com', '191969480');
 
 ALTER TABLE INFORMATION
 ADD CONSTRAINT FK_ACCCOUNT_INFORMATION
@@ -52,30 +52,11 @@ CREATE TABLE MONITORING (
 	IDM int(6) PRIMARY KEY AUTO_INCREMENT,
     ID int(6) NOT NULL,
     time datetime NOT NULL,
-    description varchar(50) NOT NULL
+    description varchar(50) NOT NULL,
+    type varchar(50)
 );
 
 ALTER TABLE MONITORING
 ADD CONSTRAINT FK_ACCCOUNT_MONITORING
-FOREIGN KEY (ID) REFERENCES ACCOUNT(ID)
-ON DELETE CASCADE;
-
-
-
-SELECT * FROM ACCOUNT;
-SELECT * FROM BALANCE;
-SELECT * FROM INFORMATION WHERE ID=1015;
-SELECT * FROM MONITORING WHERE ID=1001;
-SELECT username, password from ACCOUNT WHERE username = 'admin' AND password = '123';
-SELECT username FROM ACCOUNT;
-DELETE FROM ACCOUNT WHERE ID = 1011;
-INSERT INTO MONITORING (ID, time, description) VALUES
-(1005, '2020-11-11', '+ 5000000 VND'),
-(1005, '2020-11-12', '+ 4000000 VND');
-UPDATE BALANCE SET balance = 500000 WHERE ID = '1002';
-DELETE FROM BALANCE WHERE ID = 1003;
-DROP TABLE BALANCE;
-DROP TABLE MONITORING;
-INSERT INTO MONITORING (ID, time, description) VALUES
-(1003, '2020-11-12 14:20:00', '+ 2000000 VND');
+FOREIGN KEY (ID) REFERENCES ACCOUNT(ID);
 

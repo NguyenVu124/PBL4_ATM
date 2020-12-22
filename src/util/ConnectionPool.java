@@ -21,6 +21,7 @@ public class ConnectionPool implements InterfaceCP {
 	private final String password = "";
 
 	public ConnectionPool() {
+
 		for (int i = 0; i < MAX_POOL_SIZE; i++) {
 			try {
 				availableConnections.add(createConnection(url, username, password));
